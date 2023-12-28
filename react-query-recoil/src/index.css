@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  /* touch-action: manipulation; */
+}
