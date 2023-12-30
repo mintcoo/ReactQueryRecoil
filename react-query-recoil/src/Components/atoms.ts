@@ -9,6 +9,11 @@ export interface IToDo {
   // 그냥 string이 아니라 딱 저 3가지 카테고리중 하나만 가능하다고 명시
 }
 
+export const categoryState = atom<IToDo["category"]>({
+  key: "category",
+  default: "ToDo",
+});
+
 export const toDoState = atom<IToDo[]>({
   // 타입 적어주는 곳 잘 보자
   key: "toDo",
@@ -20,11 +25,13 @@ export const toDoSelector = selector({
   get: ({ get }) => {
     const toDos = get(toDoState);
     // atom의 값을 가져옴 atom을 항상 보고있음
-    const toDoList = toDos.filter((toDo) => toDo.category == "ToDo");
+    const category = get(categoryState);
+    // 현재의 선택된 category 정보가져옴
+
+    const toDoList = toDos.filter((toDo) => toDo.category === category);
     // 조건에 맞는것만 배열로 반환하는 함수 filter
-    const doingList = toDos.filter((toDo) => toDo.category == "Doing");
-    const doneList = toDos.filter((toDo) => toDo.category == "Done");
-    return [toDoList, doingList, doneList];
-    // 각각을 배열로 만들어서 하나의 배열안에 [[1], [2], [3]] 이런식으로 리턴
+    // 현재 카테고리와 같은 toDo들만 걸러서 배열로 만들어줌
+
+    return toDoList;
   },
 });
