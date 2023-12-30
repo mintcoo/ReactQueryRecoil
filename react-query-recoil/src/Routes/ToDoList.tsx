@@ -1,55 +1,22 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { atom, useRecoilState } from "recoil";
-
-interface IForm {
-  toDo: string;
-}
-
-interface IToDo {
-  id: number;
-  text: string;
-  category: "Done" | "Doing" | "ToDo";
-  // 그냥 string이 아니라 딱 저 3가지 카테고리중 하나만 가능하다고 명시
-}
-const toDoState = atom<IToDo[]>({
-  // 타입 적어주는 곳 잘 보자
-  key: "toDo",
-  default: [],
-});
+import { useRecoilValue } from "recoil";
+import CreateToDo from "../Components/CreateToDo";
+import { toDoState } from "../Components/atoms";
+import ToDo from "../Components/ToDo";
 
 function TodoList() {
-  const [toDos, setToDos] = useRecoilState(toDoState);
-
-  const { register, handleSubmit, setValue } = useForm<IForm>();
-
-  const onSubmit = (data: IForm) => {
-    // 데이터가 모두 유효하다면
-    console.log(data, "data");
-    setToDos((prev) => [
-      { id: Date.now(), text: data.toDo, category: "ToDo" },
-      ...prev,
-    ]);
-    setValue("toDo", "");
-    // 입력후 빈 칸으로 만들어주기
-  };
-  console.log(toDos);
+  const toDos = useRecoilValue(toDoState);
+  // 값만 주시하므로 useRecoilValue 사용
 
   return (
     <>
       <div className="text-4xl">TodoList</div>;
-      <form className="flex w-96 m-8" onSubmit={handleSubmit(onSubmit)}>
-        <input
-          {...register("toDo", { required: "할 일을 추가해주세요" })}
-          className="form-input"
-          placeholder="할 일 적기"
-        />
-        <button className="w-20 bg-pink-300 rounded-lg">add</button>
-      </form>
+      <CreateToDo />
       <ul>
-        {toDos.map((toDo) => {
-          return <li key={toDo.id}>{toDo.text}</li>;
-        })}
+        {toDos.map((toDo) => (
+          <ToDo key={toDo.id} {...toDo} />
+        ))}
+        {/* {toDos.map((toDo) => <ToDo text={toDo.text} category={toDo.category} id={toDo.id} />)} */}
+        {/* 이렇게 길게 안쓰고 위에처럼 한번에 가능 왜냐면 toDo자체가 전달하는 props와 같은 모양이기때문 */}
       </ul>
     </>
   );
