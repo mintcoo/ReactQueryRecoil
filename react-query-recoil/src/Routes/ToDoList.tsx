@@ -1,6 +1,11 @@
 import { useRecoilState, useRecoilValue } from "recoil";
 import CreateToDo from "../Components/CreateToDo";
-import { categoryState, toDoSelector, toDoState } from "../Components/atoms";
+import {
+  Categories,
+  categoryState,
+  toDoSelector,
+  toDoState,
+} from "../Components/atoms";
 import ToDo from "../Components/ToDo";
 
 function TodoList() {
@@ -11,11 +16,9 @@ function TodoList() {
   const [category, setCategory] = useRecoilState(categoryState);
 
   const onInput = (event: React.FormEvent<HTMLSelectElement>) => {
-    setCategory(event.currentTarget.value as "Done" | "Doing" | "ToDo");
+    setCategory(event.currentTarget.value as Categories);
   };
-  console.log(category, "zkxp");
-  console.log(toDos, "todos");
-
+  console.log(toDos);
   return (
     <>
       <div className="text-4xl">TodoList</div>;
@@ -24,9 +27,9 @@ function TodoList() {
         className="text-2xl bg-sky-200"
         onInput={onInput}
       >
-        <option value="ToDo">To Do</option>
-        <option value="Doing">Doing</option>
-        <option value="Done">Done</option>
+        <option value={Categories.ToDo}>To Do</option>
+        <option value={Categories.Doing}>Doing</option>
+        <option value={Categories.Done}>Done</option>
       </select>
       <CreateToDo />
       <div className="text-4xl font-bold text-purple-900">할 일</div>

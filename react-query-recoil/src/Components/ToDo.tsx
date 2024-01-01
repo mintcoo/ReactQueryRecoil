@@ -1,5 +1,5 @@
 import { useSetRecoilState } from "recoil";
-import { IToDo, toDoState } from "./atoms";
+import { Categories, IToDo, toDoState } from "./atoms";
 
 function ToDo({ text, category, id }: IToDo) {
   // text만 골라받아도 기존의 IToDo 타입을 쓸수있네
@@ -23,18 +23,27 @@ function ToDo({ text, category, id }: IToDo) {
   return (
     <li>
       <span>{text}</span>
-      {category !== "ToDo" && (
-        <button onClick={() => onClick("ToDo")} className="btn-primary">
+      {category !== Categories.ToDo && (
+        <button
+          onClick={() => onClick(Categories.ToDo)}
+          className="btn-primary"
+        >
           To Do
         </button>
       )}
-      {category !== "Doing" && (
-        <button onClick={() => onClick("Doing")} className="btn-primary">
+      {category !== Categories.Doing && (
+        <button
+          onClick={() => onClick(Categories.Doing)}
+          className="btn-primary"
+        >
           Doing
         </button>
       )}
-      {category !== "Done" && (
-        <button onClick={() => onClick("Done")} className="btn-primary">
+      {category !== Categories.Done && (
+        <button
+          onClick={() => onClick(Categories.Done)}
+          className="btn-primary"
+        >
           Done
         </button>
       )}
