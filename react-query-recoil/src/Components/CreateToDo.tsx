@@ -13,7 +13,6 @@ function CreateToDo() {
 
   const onSubmit = (data: IForm) => {
     // 데이터가 모두 유효하다면
-    console.log(data, "data");
     setToDos((prev) => [
       { id: Date.now(), text: data.toDo, category: nowCategory },
       ...prev,
