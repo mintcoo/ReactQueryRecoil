@@ -19,6 +19,13 @@ function ToDo({ text, category, id }: IToDo) {
       // 이렇게 하는 이유는 순서를 바꾸지 않기 위함
     });
   };
+  const onDelete = () => {
+    setToDos((prev) => {
+      const newToDos = prev.filter((todo) => todo.id !== id);
+      // id빼고 새 리스트만들어서 세팅
+      return newToDos;
+    });
+  };
 
   return (
     <li>
@@ -47,6 +54,9 @@ function ToDo({ text, category, id }: IToDo) {
           Done
         </button>
       )}
+      <button onClick={onDelete} className="btn-primary">
+        Delete
+      </button>
     </li>
   );
   // 리팩토링 하면서 key는 필요없어져서 지움 ToDoList에서 key 넣어줌
