@@ -84,11 +84,19 @@ export const minuteState = atom({
   default: 0,
 });
 
-export const hourSelector = selector({
+export const hourSelector = selector<number>({
   key: "hourSelector",
   get: ({ get }) => {
     const minuteValue = get(minuteState);
     const hourConvertor = Math.floor(minuteValue / 60);
     return hourConvertor;
   },
+  set: ({ set }, newValue) => {
+    // state값을 수정할 수 있는 set
+    // 시간값을 변경하면 minute 분값도 변하도록 세팅
+    const newMinute = Number(newValue) * 60;
+    // number값만 해주기위해서
+    set(minuteState, newMinute);
+  },
 });
+// 결국 selector는 atom의 여러값들을 가져와서 내 입맛에 맞게 변형해서 쓰는용도 매우유용하다
