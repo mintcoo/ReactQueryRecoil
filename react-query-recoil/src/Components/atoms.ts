@@ -77,3 +77,18 @@ export const toDoSelector = selector({
     return toDoList;
   },
 });
+
+// ======= 아래로 recoil의 get과 set 연습용 ==========
+export const minuteState = atom({
+  key: "minute",
+  default: 0,
+});
+
+export const hourSelector = selector({
+  key: "hourSelector",
+  get: ({ get }) => {
+    const minuteValue = get(minuteState);
+    const hourConvertor = Math.floor(minuteValue / 60);
+    return hourConvertor;
+  },
+});
