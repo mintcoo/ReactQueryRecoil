@@ -10,9 +10,15 @@
 
 @layer components {
   .form-input {
-    @apply py-2 px-4 outline outline-1 outline-sky-400 font-semibold rounded-lg  hover:outline-sky-500 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75;
+    @apply px-4 py-2 font-semibold rounded-lg outline outline-1 outline-sky-400 hover:outline-sky-500 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75;
   }
   .btn-primary {
-    @apply mx-1 py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75;
+    @apply px-4 py-2 mx-1 font-semibold text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75;
+  }
+  .board-style {
+    @apply p-8 bg-gray-400 rounded-xl;
+  }
+  .card-style {
+    @apply flex justify-center px-8 py-4 mb-4 text-2xl font-bold bg-sky-200 w-96;
   }
 }

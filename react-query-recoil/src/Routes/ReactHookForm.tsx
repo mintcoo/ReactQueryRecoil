@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 // React Hook Form
@@ -67,7 +66,7 @@ function ReactHookForm() {
     <>
       <div className="text-4xl">ReactHookForm</div>;
       <form
-        className="flex flex-col justify-between h-96 w-48 m-8"
+        className="flex flex-col justify-between w-48 m-8 h-96"
         onSubmit={handleSubmit(onValid)}
       >
         {/* handleSubmit은 필수첫번째로 유효성검사가 완료되었을때 실행될 함수와, 필수는아닌데 두번째로 유효성검사 에러일때 실행될함수 2개의인자를 받음 */}
@@ -90,7 +89,7 @@ function ReactHookForm() {
           // required뒤에 true가 아닌 저렇게 메시지적으면 에러일때 메시지가 나온다
           placeholder="할 일 적기"
         />
-        <span className="text-red-600 font-bold">
+        <span className="font-bold text-red-600">
           {errors?.toDo?.message as string}
         </span>
         <input
@@ -105,7 +104,7 @@ function ReactHookForm() {
           })}
           placeholder="email"
         />
-        <span className="text-red-600 font-bold">
+        <span className="font-bold text-red-600">
           {errors?.email?.message as string}
         </span>
         <input
@@ -113,7 +112,7 @@ function ReactHookForm() {
           {...register("password", { required: "패스워드 입력해라" })}
           placeholder="password"
         />
-        <span className="text-red-600 font-bold">
+        <span className="font-bold text-red-600">
           {errors?.password?.message as string}
         </span>
         <input
@@ -121,11 +120,11 @@ function ReactHookForm() {
           {...register("password1", { required: true })}
           placeholder="password1"
         />
-        <span className="text-red-600 font-bold">
+        <span className="font-bold text-red-600">
           {errors?.password1?.message as string}
         </span>
         <button className="w-20 bg-pink-300 rounded-lg">add</button>
-        <span className="text-red-600 font-bold">
+        <span className="font-bold text-red-600">
           {errors?.extraError?.message as string}
         </span>
       </form>

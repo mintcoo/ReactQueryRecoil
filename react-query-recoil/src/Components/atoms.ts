@@ -79,7 +79,7 @@ export const toDoSelector = selector({
 });
 
 // ======= 아래로 recoil의 get과 set 연습용 ==========
-export const minuteState = atom({
+export const minuteState = atom<number>({
   key: "minute",
   default: 0,
 });
