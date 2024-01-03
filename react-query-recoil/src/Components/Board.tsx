@@ -17,6 +17,7 @@ function Board({ toDos, boardId }: IBoard) {
             ref={provided.innerRef}
             {...provided.droppableProps}
           >
+            <div className="text-3xl font-bold text-center">{boardId}</div>
             {toDos.map((todo, index) => (
               <DraggableCard key={todo} todo={todo} index={index} />
             ))}

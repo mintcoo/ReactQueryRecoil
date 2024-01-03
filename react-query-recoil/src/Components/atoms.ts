@@ -113,8 +113,8 @@ export const toDoStateTwo = atom<IToDoStateTwo>({
   // 정확하게 타입설명 해주지않으면 타입스크립트는 아래 오로지 3가지의 default만 있는줄 안다. 후에 board를 추가할수도있는데
   key: "toDoStateTwo",
   default: {
-    ToDo: ["a", "b", "c", "d", "e", "f"],
-    Doing: ["a", "b", "c", "d", "e", "f"],
-    Done: ["a", "b", "c", "d", "e", "f"],
+    ToDo: ["a", "b"],
+    Doing: ["c", "e", "f"],
+    Done: ["d"],
   },
 });
