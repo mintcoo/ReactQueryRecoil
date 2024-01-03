@@ -78,7 +78,7 @@ export const toDoSelector = selector({
   },
 });
 
-// ======= 아래로 recoil의 get과 set 연습용 ==========
+// ======= 아래로 recoil의 get과 set 연습용 "분 & 시간"==========
 export const minuteState = atom<number>({
   key: "minute",
   default: 0,
@@ -100,3 +100,21 @@ export const hourSelector = selector<number>({
   },
 });
 // 결국 selector는 atom의 여러값들을 가져와서 내 입맛에 맞게 변형해서 쓰는용도 매우유용하다
+
+// ============ 아래로 드래그 & 드랍 ===============
+interface IToDoStateTwo {
+  [key: string]: string[];
+  // 객체의 키가 string이란걸 알려줌
+  // "x" : string[] 가능
+  // 1 : string[] 불가능
+}
+//
+export const toDoStateTwo = atom<IToDoStateTwo>({
+  // 정확하게 타입설명 해주지않으면 타입스크립트는 아래 오로지 3가지의 default만 있는줄 안다. 후에 board를 추가할수도있는데
+  key: "toDoStateTwo",
+  default: {
+    ToDo: ["a", "b", "c", "d", "e", "f"],
+    Doing: ["a", "b", "c", "d", "e", "f"],
+    Done: ["a", "b", "c", "d", "e", "f"],
+  },
+});
