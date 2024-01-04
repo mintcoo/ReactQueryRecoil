@@ -117,4 +117,5 @@ export const toDoStateTwo = atom<IToDoStateTwo>({
     Doing: ["c", "e", "f"],
     Done: ["d"],
   },
+  effects_UNSTABLE: [persistAtom],
 });

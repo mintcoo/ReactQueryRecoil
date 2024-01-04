@@ -2,8 +2,10 @@ import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { useRecoilState } from "recoil";
 import { toDoStateTwo } from "../Components/atoms";
 import Board from "../Components/Board";
+import { useState } from "react";
 
 function DragDrop() {
+  const [text, setText] = useState<string>("");
   const [toDos, setToDos] = useRecoilState(toDoStateTwo);
   // const onDragEnd = ({ draggableId, destination, source }: DropResult) => {
   //   // 드래그가 끝난 시점에 실행될 함수
@@ -60,8 +62,34 @@ function DragDrop() {
       });
     }
   };
+
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setText(event.currentTarget.value);
+  };
+
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setToDos((allBoards) => {
+      const copyNewToDoList = [...allBoards["ToDo"], text];
+      return {
+        ...allBoards,
+        ToDo: copyNewToDoList,
+      };
+    });
+  };
+  // 우선 ToDo로만 해서 바로 입력하면 들어가게 해봤음
   return (
     <>
+      <form onSubmit={onSubmit}>
+        <input
+          value={text}
+          onChange={onChange}
+          type="text"
+          placeholder="toDo?"
+          className="border-2"
+        />
+      </form>
+
       <DragDropContext onDragEnd={onDragEnd}>
         <div className="flex items-center justify-center w-full h-screen">
           {Object.keys(toDos).map((boardId) => (

@@ -19,6 +19,6 @@
     @apply p-8 mx-2 bg-gray-400 rounded-xl w-[28rem] min-h-[36rem];
   }
   .card-style {
-    @apply flex justify-center px-8 py-4 mb-4 text-2xl font-bold bg-sky-200 w-96 active:bg-purple-300;
+    @apply flex justify-center px-8 py-4 mb-4 text-2xl font-bold bg-sky-200 w-96 active:bg-purple-300 active:shadow-md;
   }
 }
