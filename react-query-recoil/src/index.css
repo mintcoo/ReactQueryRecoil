@@ -16,9 +16,9 @@
     @apply px-4 py-2 mx-1 font-semibold text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75;
   }
   .board-style {
-    @apply p-8 mx-2 bg-gray-400 rounded-xl;
+    @apply p-8 mx-2 bg-gray-400 rounded-xl w-[28rem] min-h-[36rem];
   }
   .card-style {
-    @apply flex justify-center px-8 py-4 mb-4 text-2xl font-bold bg-sky-200 w-96;
+    @apply flex justify-center px-8 py-4 mb-4 text-2xl font-bold bg-sky-200 w-96 active:bg-purple-300;
   }
 }

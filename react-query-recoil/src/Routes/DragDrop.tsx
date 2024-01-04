@@ -28,7 +28,7 @@ function DragDrop() {
     const { destination, draggableId, source } = info;
     if (source.droppableId === destination?.droppableId) {
       // 현재 같은 보드안에서 움직이고 있다면
-      if (destination?.index === undefined) return;
+      if (!destination) return;
       setToDos((allBoards) => {
         const copyBoard = [...allBoards[source.droppableId]];
         // 이렇게 하는 이유는 state를 수정하지않아야 하기 때문, 그리고 object라서 이렇게 접근
@@ -44,11 +44,26 @@ function DragDrop() {
         };
       });
     }
+    if (source.droppableId !== destination?.droppableId) {
+      // 다른 보드로 움직이는 경우
+      if (!destination) return;
+      setToDos((allBoards) => {
+        const copySourceBoard = [...allBoards[source.droppableId]];
+        const copyDestiBoard = [...allBoards[destination.droppableId]];
+        copySourceBoard.splice(source.index, 1);
+        copyDestiBoard.splice(destination?.index as number, 0, draggableId);
+        return {
+          ...allBoards,
+          [source.droppableId]: copySourceBoard,
+          [destination.droppableId]: copyDestiBoard,
+        };
+      });
+    }
   };
   return (
     <>
       <DragDropContext onDragEnd={onDragEnd}>
-        <div className="flex justify-center w-full h-full">
+        <div className="flex items-center justify-center w-full h-screen">
           {Object.keys(toDos).map((boardId) => (
             <Board key={boardId} toDos={toDos[boardId]} boardId={boardId} />
           ))}
